@@ -1,8 +1,8 @@
-export function render(content, node = 'root') {
+export function renderToDom(content, node = 'root') {
   document.getElementById(node).innerHTML = content
 }
 
-export function renderToString(content) {
+export function renderPage(content) {
   var html = `
     <html>
       <head>
