@@ -10,6 +10,7 @@
         "useBuiltIns": "usage",
         "corejs": "3.3.6"
       }
-    ]
+    ],
+    "@babel/react"
   ]
 }
