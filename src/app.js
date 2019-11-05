@@ -1,5 +1,6 @@
 import React from 'react'
+import Dictionary from './features/dictionary'
 
 export default function App() {
-  return <div>Rendered by React using JSX</div>
+  return <div><Dictionary /></div>
 }

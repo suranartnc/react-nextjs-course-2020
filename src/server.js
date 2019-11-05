@@ -16,7 +16,23 @@ server.get('/', function(req, res) {
   const html = `
     <html>
       <head>
-        <title>RNG Stack Course 2018</title>
+        <title>React Next.js Course 2020</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+        <style>
+          * {
+            box-sizing: border-box;
+            margin: 0px;
+            padding: 0px;
+          }
+          html {
+            font-size: 87.5%;
+          }
+          body {
+            font-family: arial, 'sans-serif';
+            font-size: 1em;
+          }
+        </style>
       </head>
       <body>
         <div id="root">${content}</div>
