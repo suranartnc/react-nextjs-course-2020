@@ -1,16 +1,36 @@
 {
   "presets": [
     [
-      "@babel/preset-env",
+      "next/babel",
       {
-        "targets": {
-          "node": "current",
-          "chrome": "78"
-        },
-        "useBuiltIns": "usage",
-        "corejs": "3.3.6"
+        "class-properties": {
+          "loose": true
+        }
       }
     ],
-    "@babel/react"
+    "@emotion/babel-preset-css-prop"
+  ],
+  "plugins": [
+    "lodash",
+    [
+      "@babel/plugin-proposal-decorators",
+      {
+        "legacy": true
+      }
+    ],
+    [
+      "module-resolver",
+      {
+        "alias": {
+          "@components": "./src/components",
+          "@common": "./src/components/_common",
+          "@link": "./src/components/_common/Link",
+          "@lib": "./src/lib",
+          "@features": "./src/features",
+          "@router": "./src/router",
+          "@grid": "@rebass/grid/emotion"
+        }
+      }
+    ]
   ]
 }

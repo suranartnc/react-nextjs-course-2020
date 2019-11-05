@@ -1,29 +1,44 @@
-import express from 'express'
-import React from 'react'
-import ReactDOM from 'react-dom/server'
+const path = require('path')
+const express = require('express')
+const compression = require('compression')
+const next = require('next')
+const favicon = require('serve-favicon')
+const useragent = require('express-useragent')
+const routes = require('./router')
 
-import App from './app'
+const port = process.env.PORT || 3000
 
-const port = 3000
-const server = express()
+const dev = process.env.NODE_ENV !== 'production'
+const app = next({
+  dev,
+  dir: './src',
+})
+const handle = routes.getRequestHandler(app)
 
-server.listen(port)
-server.use(express.static('public'))
+app.prepare().then(() => {
+  const server = express()
 
-server.get('/', function(req, res) {
-  const content = ReactDOM.renderToString(<App />)
+  server.use(
+    compression({
+      filter: function(req, res) {
+        if (process.env.ASSET_PREFIX !== '') {
+          return false
+        }
 
-  const html = `
-    <html>
-      <head>
-        <title>RNG Stack Course 2018</title>
-      </head>
-      <body>
-        <div id="root">${content}</div>
-        <script src="/build/client.bundle.js"></script>
-      </body>
-    </html>
-  `
+        return compression.filter(req, res)
+      },
+    }),
+  )
 
-  res.send(html)
+  server.use(favicon(path.join(__dirname, 'public', 'favicon.ico')))
+  server.use(useragent.express())
+
+  server.use((req, res) => {
+    handle(req, res)
+  })
+
+  server.listen(port, err => {
+    if (err) throw err
+    console.log(`> Ready on http://localhost:${port}`)
+  })
 })
