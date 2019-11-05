@@ -1,5 +1,7 @@
 import React from 'react'
 
+import ToDo from './features/todo'
+
 export default function App() {
-  return <div>Rendered by React using JSX</div>
+  return <div><ToDo /></div>
 }
