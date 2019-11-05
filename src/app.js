@@ -1,5 +1,10 @@
 import React from 'react'
+import Timer from './features/timer'
 
 export default function App() {
-  return <div>Rendered by React using JSX</div>
+  return (
+    <div>
+      <Timer />
+    </div>
+  )
 }
