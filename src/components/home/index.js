@@ -1,38 +1,31 @@
-import React, { Fragment } from 'react'
+import React from 'react'
 import { Flex, Box } from '@rebass/grid/emotion'
 
-import { FetchMore } from '@lib/api'
+import { Fetch } from '@lib/api'
+import { useMember } from '@lib/auth'
 import withPage from '@lib/page/withPage'
-import * as ArticleService from '@features/article/services'
+import * as AlbumService from '@features/album/services'
 
-import ArticleLatest, { ArticleList } from './ArticleLatest'
+function HomePage() {
+  const { token } = useMember()
 
-function HomePage({ articleLatest }) {
   return (
     <Flex flexWrap="wrap">
       <Box width={[1, 2 / 3]} pr={[0, 20]}>
-        <ArticleLatest data={articleLatest} />
-
-        <FetchMore
-          service={({ start, limit }) =>
-            ArticleService.getArticles({ start, limit })
+        <Fetch service={() => AlbumService.getNewReleases({ token })}>
+          {({ data }) =>
+            data.albums.items.map(album => (
+              <Box width={1 / 5} px={10} py={10} key={album.id}>
+                <article>
+                  <img src={album.images[0].url} />
+                  <h3 css={{ fontSize: '1rem', marginTop: '5px' }}>
+                    {album.name}
+                  </h3>
+                </article>
+              </Box>
+            ))
           }
-          start={5}
-          limit={5}>
-          {({ data, fetchMore, isLoading, isDone }) => {
-            return (
-              <Fragment>
-                <ArticleList data={data} />
-
-                {!isDone && (
-                  <button onClick={fetchMore}>
-                    {isLoading ? 'Loading...' : 'Load More'}
-                  </button>
-                )}
-              </Fragment>
-            )
-          }}
-        </FetchMore>
+        </Fetch>
       </Box>
 
       <Box width={[1, 1 / 3]} pl={[0, 20]}>
@@ -42,13 +35,4 @@ function HomePage({ articleLatest }) {
   )
 }
 
-HomePage.getInitialProps = async () => {
-  const articleLatest = await ArticleService.getLatestArticles()
-
-  return {
-    title: 'Home',
-    articleLatest,
-  }
-}
-
-export default withPage()(HomePage)
+export default withPage({ restricted: true })(HomePage)
