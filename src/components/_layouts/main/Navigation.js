@@ -9,11 +9,11 @@ const mainMenus = [
   },
   {
     name: 'Search',
-    route: 'about',
+    route: 'search',
   },
   {
-    name: 'My Collections',
-    route: 'account',
+    name: 'Playlists',
+    route: 'playlist-list',
   },
 ]
 

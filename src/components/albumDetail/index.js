@@ -4,29 +4,18 @@ import { Flex, Box } from '@grid'
 import withPage from '@lib/page/withPage'
 import { Fetch } from '@lib/api'
 
-import * as ArticleService from '@features/album/services'
+import * as AlbumService from '@features/album/services'
 
-import ArticleContent from './ArticleContent'
-import ArticleLatest from '../home/ArticleLatest'
-
-function ArticleDetailPage({ articleDetail }) {
+function AlbumDetailPage({ articleDetail }) {
   return (
     <Flex flexWrap="wrap">
-      <Box width={[1, 2 / 3]} pr={[0, 20]}>
-        <ArticleContent data={articleDetail} />
-      </Box>
-
-      <Box width={[1, 1 / 3]} pl={[0, 20]}>
-        <Fetch service={ArticleService.getLatestArticles}>
-          {({ data }) => <ArticleLatest data={data} />}
-        </Fetch>
-      </Box>
+      <Box width={[1, 2 / 3]} pr={[0, 20]}></Box>
     </Flex>
   )
 }
 
-ArticleDetailPage.getInitialProps = async ({ asPath, query }) => {
-  const articleDetail = await ArticleService.getArticleById(query.id)
+AlbumDetailPage.getInitialProps = async ({ asPath, query }) => {
+  const articleDetail = await AlbumService.getNewReleases(query.id)
 
   return {
     title: articleDetail.title,
@@ -59,4 +48,4 @@ ArticleDetailPage.getInitialProps = async ({ asPath, query }) => {
   }
 }
 
-export default withPage()(ArticleDetailPage)
+export default withPage()(AlbumDetailPage)
