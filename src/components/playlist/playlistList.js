@@ -1,6 +1,7 @@
 import React from 'react'
-import { Flex, Box } from '@rebass/grid/emotion'
+import { Flex, Box } from '@grid'
 
+import Link from '@link'
 import { Fetch } from '@lib/api'
 import { useMember } from '@lib/auth'
 import withPage from '@lib/page/withPage'
@@ -17,10 +18,14 @@ function PlaylistListPage() {
     <Flex flexWrap="wrap" css={{ padding: '60px 120px' }}>
       <Fetch service={() => PlaylistService.getMyPlaylist({ token })}>
         {({ data }) =>
-          data.items.map(album => (
-            <Box width={1 / 6} px={10} py={10} key={album.id}>
+          data.items.map(playlist => (
+            <Box width={1 / 6} px={10} py={10} key={playlist.id}>
               <article>
-                <img src={album.images[0].url} />
+                <Link route="playlist-detail" params={{ id: playlist.id }}>
+                  <a>
+                    <img src={playlist.images[0].url} />
+                  </a>
+                </Link>
                 <h3
                   css={{
                     fontSize: '0.8em',
@@ -29,7 +34,9 @@ function PlaylistListPage() {
                     marginTop: '10px',
                     textAlign: 'center',
                   }}>
-                  <a>{album.name}</a>
+                  <Link route="playlist-detail" params={{ id: playlist.id }}>
+                    <a>{playlist.name}</a>
+                  </Link>
                 </h3>
               </article>
             </Box>
