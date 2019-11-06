@@ -9,8 +9,6 @@ import { signIn } from '@features/_auth'
 const logoStyle = {
   display: 'block',
   paddingBottom: '30px',
-  margin: 'auto',
-  maxWidth: '500px',
 }
 
 const loginButton = {
@@ -20,7 +18,6 @@ const loginButton = {
   borderRadius: '30px',
   fontSize: '24px',
   fontWeight: 'bold',
-  color: 'white',
   cursor: 'pointer',
 }
 
@@ -31,20 +28,29 @@ function LoginPage() {
   }
 
   return (
-    <Flex flexWrap="wrap" justifyContent="center">
-      <Box width={1}>
-        <img
-          css={logoStyle}
-          src={getStatic('images/spotifyLogo.png')}
-          alt={'SpotifyLogo'}
-        />
-      </Box>
-      <Box width={1} style={{ textAlign: 'center' }}>
-        <button css={loginButton} onClick={login}>
-          Login
-        </button>
-      </Box>
-    </Flex>
+    <div css={{ maxWidth: '480px', margin: '0 auto', height: '100vh' }}>
+      <Flex
+        css={{
+          flexWrap: 'wrap',
+          justifyContent: 'center',
+          alignItems: 'center',
+          flexDirection: 'column',
+          height: '100%',
+        }}>
+        <Box width={1}>
+          <img
+            css={logoStyle}
+            src={getStatic('images/spotifyLogo.png')}
+            alt={'SpotifyLogo'}
+          />
+        </Box>
+        <Box width={1} css={{ textAlign: 'center' }}>
+          <button css={loginButton} onClick={login}>
+            Login
+          </button>
+        </Box>
+      </Flex>
+    </div>
   )
 }
 
