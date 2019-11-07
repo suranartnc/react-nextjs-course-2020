@@ -43,8 +43,16 @@ function SearchPage() {
           {({ data }) => {
             return (
               <Fragment>
-                <ResultRow title="Albums" data={data.albums.items} />
-                <ResultRow title="Playlists" data={data.playlists.items} />
+                <ResultRow
+                  title="Albums"
+                  data={data.albums.items}
+                  route="album-detail"
+                />
+                <ResultRow
+                  title="Playlists"
+                  data={data.playlists.items}
+                  route="playlist-detail"
+                />
               </Fragment>
             )
           }}
@@ -54,7 +62,7 @@ function SearchPage() {
   )
 }
 
-function ResultRow({ title, data }) {
+function ResultRow({ title, data, route }) {
   return (
     <Fragment>
       <Box width={1}>
@@ -72,7 +80,7 @@ function ResultRow({ title, data }) {
           {data.map(item => (
             <Box width={1 / 6} px={10} py={20} key={item.id}>
               <article>
-                <Link route="playlist-detail" params={{ id: item.id }}>
+                <Link route={route} params={{ id: item.id }}>
                   <a>
                     <img src={item.images[0].url} />
                   </a>
@@ -85,7 +93,7 @@ function ResultRow({ title, data }) {
                     marginTop: '10px',
                     textAlign: 'center',
                   }}>
-                  <Link route="playlist-detail" params={{ id: item.id }}>
+                  <Link route={route} params={{ id: item.id }}>
                     <a>{item.name}</a>
                   </Link>
                 </h3>
