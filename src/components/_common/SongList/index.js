@@ -7,9 +7,9 @@ export default function SongList({ tracks }) {
     <Flex
       flexWrap="wrap"
       width={1}
-      css={{ backgroundColor: '#111', padding: '10px 0', borderRadius: '5px' }}>
+      css={{ padding: '10px 0', borderRadius: '5px' }}>
       {tracks.map((track, i) => {
-        return <SongListItem key={i} track={track.track} />
+        return <SongListItem key={i} track={track} />
       })}
     </Flex>
   )

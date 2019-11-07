@@ -1,51 +1,39 @@
 import React from 'react'
+import { useRouter } from 'next/router'
 import { Flex, Box } from '@grid'
-
 import withPage from '@lib/page/withPage'
 import { Fetch } from '@lib/api'
-
+import { useMember } from '@lib/auth'
 import * as AlbumService from '@features/album/services'
 
+import DetailPageHeader from '@components/_common/DetailPageHeader'
+import SongList from '@common/SongList'
+
 function AlbumDetailPage({ articleDetail }) {
-  return (
-    <Flex flexWrap="wrap">
-      <Box width={[1, 2 / 3]} pr={[0, 20]}></Box>
-    </Flex>
-  )
-}
+  const { query } = useRouter()
 
-AlbumDetailPage.getInitialProps = async ({ asPath, query }) => {
-  const articleDetail = await AlbumService.getNewReleases(query.id)
+  const { token } = useMember()
 
-  return {
-    title: articleDetail.title,
-    meta: {
-      description: articleDetail.excerpt,
-      keywords: articleDetail.tags.join(', '),
-      'og:title': articleDetail.title,
-      'og:description': articleDetail.excerpt,
-    },
-    stats: {
-      gtm: {
-        customDimensions: {
-          customDM1: articleDetail.author.name,
-          customDM2: articleDetail.pubDate,
-        },
-      },
-    },
-    breadcrumb: [
-      {
-        label: articleDetail.title,
-        route: {
-          name: 'article-detail',
-          params: {
-            id: articleDetail.id,
-          },
-        },
-      },
-    ],
-    articleDetail,
+  if (token === null) {
+    return null
   }
+
+  return (
+    <Fetch service={() => AlbumService.getAlbumById(query.id, { token })}>
+      {({ data }) => {
+        return (
+          <Flex flexWrap="wrap" css={{ padding: '60px 120px' }} key={data.id}>
+            <Box width={1 / 3}>
+              <DetailPageHeader data={data} />
+            </Box>
+            <Box width={2 / 3}>
+              <SongList tracks={data.tracks} />
+            </Box>
+          </Flex>
+        )
+      }}
+    </Fetch>
+  )
 }
 
 export default withPage()(AlbumDetailPage)

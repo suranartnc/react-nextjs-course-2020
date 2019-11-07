@@ -6,3 +6,10 @@ export function getNewReleases({ token }) {
     token,
   })
 }
+
+export function getAlbumById(id, { token }) {
+  return fetchAPI({
+    path: `/albums/${id}`,
+    token,
+  })
+}

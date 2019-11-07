@@ -4,6 +4,7 @@ import { Flex, Box } from '@grid'
 import colors from '@features/_ui/colors'
 
 export default function SongListItem({ track }) {
+  console.log('track', track)
   return (
     <Box width={1}>
       <Flex
@@ -42,7 +43,7 @@ export default function SongListItem({ track }) {
               {track.name}
             </Box>
             <Box width={1} css={{ fontSize: '0.9em', paddingTop: '10px' }}>
-              {track.artists[0].name} • {track.album.name}
+              {track.artist} • {track.album}
             </Box>
           </Flex>
         </Box>
@@ -52,7 +53,7 @@ export default function SongListItem({ track }) {
             fontSize: '0.85em',
             color: '#888',
           }}>
-          {transformDuration(track.duration_ms)}
+          {transformDuration(track.durationMs)}
         </Box>
       </Flex>
     </Box>

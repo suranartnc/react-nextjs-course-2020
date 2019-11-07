@@ -1,6 +1,6 @@
 import React from 'react'
 import { Flex, Box } from '@grid'
-
+import Link from '@link'
 import { Fetch } from '@lib/api'
 import { useMember } from '@lib/auth'
 import withPage from '@lib/page/withPage'
@@ -20,7 +20,11 @@ function HomePage() {
           data.albums.items.map(album => (
             <Box width={1 / 6} px={10} py={10} key={album.id}>
               <article>
-                <img src={album.images[0].url} />
+                <Link route="album-detail" params={{ id: album.id }}>
+                  <a>
+                    <img src={album.images[0].url} />
+                  </a>
+                </Link>
                 <h3
                   css={{
                     fontSize: '0.8em',
@@ -29,7 +33,9 @@ function HomePage() {
                     marginTop: '10px',
                     textAlign: 'center',
                   }}>
-                  <a>{album.name}</a>
+                  <Link route="album-detail" params={{ id: album.id }}>
+                    <a>{album.name}</a>
+                  </Link>
                 </h3>
               </article>
             </Box>
