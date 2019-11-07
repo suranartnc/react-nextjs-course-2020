@@ -1,4 +1,5 @@
 import axios from 'axios'
+import { debounce } from 'lodash'
 
 const defaultTimeout = 10000
 
@@ -63,4 +64,12 @@ export function throwError(status = 500) {
   const err = new Error()
   err.response = { status }
   throw err
+}
+
+export function debouncePromise(promise, wait) {
+  return new Promise((resolve, reject) => {
+    debounce(() => {
+      promise.then(resolve).catch(reject)
+    }, wait)()
+  })
 }
