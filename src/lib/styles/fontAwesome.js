@@ -10,6 +10,7 @@ import {
   faAngleLeft,
   faUser,
   faUsers,
+  faPlay,
 } from '@fortawesome/free-solid-svg-icons'
 
 config.autoAddCss = false
@@ -25,4 +26,5 @@ library.add(
   faAngleLeft,
   faUser,
   faUsers,
+  faPlay,
 )
