@@ -1,2 +1,2 @@
-import playlistDetailPage from '@components/playlist/playlistDetail'
-export default playlistDetailPage
+import PlaylistDetailPage from '@components/playlist/PlaylistDetail'
+export default PlaylistDetailPage

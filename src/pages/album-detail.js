@@ -1,2 +1,2 @@
-import albumDetail from '@components/albumDetail'
-export default albumDetail
+import AlbumDetailPage from '@components/album/AlbumDetail'
+export default AlbumDetailPage
