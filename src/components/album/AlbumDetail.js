@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Fragment } from 'react'
 import { useRouter } from 'next/router'
 import { Flex, Box } from '@grid'
 import withPage from '@lib/page/withPage'
@@ -19,20 +19,22 @@ function AlbumDetailPage({ articleDetail }) {
   }
 
   return (
-    <Fetch service={() => AlbumService.getAlbumById(query.id, { token })}>
-      {({ data }) => {
-        return (
-          <Flex flexWrap="wrap" css={{ padding: '60px 120px' }} key={data.id}>
-            <Box width={1 / 3}>
-              <DetailPageHeader data={data} />
-            </Box>
-            <Box width={2 / 3}>
-              <SongList tracks={data.tracks} />
-            </Box>
-          </Flex>
-        )
-      }}
-    </Fetch>
+    <Flex flexWrap="wrap" css={{ padding: '60px 120px' }}>
+      <Fetch service={() => AlbumService.getAlbumById(query.id, { token })}>
+        {({ data }) => {
+          return (
+            <Fragment key={data.id}>
+              <Box width={1 / 3}>
+                <DetailPageHeader data={data} />
+              </Box>
+              <Box width={2 / 3}>
+                <SongList tracks={data.tracks} />
+              </Box>
+            </Fragment>
+          )
+        }}
+      </Fetch>
+    </Flex>
   )
 }
 

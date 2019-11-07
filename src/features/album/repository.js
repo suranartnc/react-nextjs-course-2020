@@ -1,9 +1,12 @@
 import { fetchAPI } from '@lib/api'
 
-export function getNewReleases({ token }) {
+export function getNewReleases({ token, limit = 18 } = {}) {
   return fetchAPI({
     path: '/browse/new-releases/',
     token,
+    params: {
+      limit,
+    },
   })
 }
 

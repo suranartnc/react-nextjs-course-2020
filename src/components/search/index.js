@@ -36,58 +36,65 @@ function SearchPage() {
       </Box>
 
       {keyword !== '' && (
-        <Fragment>
-          <Box width={1}>
-            <h1
-              css={{
-                color: colors.link,
-                fontSize: '1.8em',
-                padding: '50px 10px 0px',
-              }}>
-              Search results
-            </h1>
-          </Box>
-          <Box width={1}>
-            <Flex flexWrap="wrap">
-              <Fetch
-                service={() =>
-                  SearchService.getSearchResults(keyword, { token })
-                }>
-                {({ data }) =>
-                  data.items.map(playlist => (
-                    <Box width={1 / 6} px={10} py={20} key={playlist.id}>
-                      <article>
-                        <Link
-                          route="playlist-detail"
-                          params={{ id: playlist.id }}>
-                          <a>
-                            <img src={playlist.images[0].url} />
-                          </a>
-                        </Link>
-                        <h3
-                          css={{
-                            fontSize: '0.8em',
-                            fontWeight: 'bold',
-                            lineHeight: '1.5',
-                            marginTop: '10px',
-                            textAlign: 'center',
-                          }}>
-                          <Link
-                            route="playlist-detail"
-                            params={{ id: playlist.id }}>
-                            <a>{playlist.name}</a>
-                          </Link>
-                        </h3>
-                      </article>
-                    </Box>
-                  ))
-                }
-              </Fetch>
-            </Flex>
-          </Box>
-        </Fragment>
+        <Fetch
+          service={() =>
+            SearchService.getSearchResults(keyword, { token, limit: 6 })
+          }>
+          {({ data }) => {
+            return (
+              <Fragment>
+                <ResultRow title="Albums" data={data.albums.items} />
+                <ResultRow title="Playlists" data={data.playlists.items} />
+              </Fragment>
+            )
+          }}
+        </Fetch>
       )}
     </Flex>
+  )
+}
+
+function ResultRow({ title, data }) {
+  return (
+    <Fragment>
+      <Box width={1}>
+        <h1
+          css={{
+            color: colors.link,
+            fontSize: '1.8em',
+            padding: '50px 10px 0px',
+          }}>
+          {title}
+        </h1>
+      </Box>
+      <Box width={1}>
+        <Flex flexWrap="wrap">
+          {data.map(item => (
+            <Box width={1 / 6} px={10} py={20} key={item.id}>
+              <article>
+                <Link route="playlist-detail" params={{ id: item.id }}>
+                  <a>
+                    <img src={item.images[0].url} />
+                  </a>
+                </Link>
+                <h3
+                  css={{
+                    fontSize: '0.8em',
+                    fontWeight: 'bold',
+                    lineHeight: '1.5',
+                    marginTop: '10px',
+                    textAlign: 'center',
+                  }}>
+                  <Link route="playlist-detail" params={{ id: item.id }}>
+                    <a>{item.name}</a>
+                  </Link>
+                </h3>
+              </article>
+            </Box>
+          ))}
+        </Flex>
+      </Box>
+    </Fragment>
   )
 }
 

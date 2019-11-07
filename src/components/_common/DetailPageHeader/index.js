@@ -14,7 +14,8 @@ export default function DetailPageHeader({ data }) {
               color: colors.link,
               fontSize: '1.6em',
               fontWeight: 'bold',
-              padding: '20px 0 10px',
+              lineHeight: 1.5,
+              padding: '8px 0 10px',
             }}>
             {data.title}
           </h1>

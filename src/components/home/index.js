@@ -5,6 +5,7 @@ import { Fetch } from '@lib/api'
 import { useMember } from '@lib/auth'
 import withPage from '@lib/page/withPage'
 import * as AlbumService from '@features/album/services'
+import colors from '@features/_ui/colors'
 
 function HomePage() {
   const { token } = useMember()
@@ -15,6 +16,16 @@ function HomePage() {
 
   return (
     <Flex flexWrap="wrap" css={{ padding: '60px 120px' }}>
+      <Box width={1}>
+        <h1
+          css={{
+            color: colors.link,
+            fontSize: '2em',
+            padding: '50px 10px 10px',
+          }}>
+          New Releases
+        </h1>
+      </Box>
       <Fetch service={() => AlbumService.getNewReleases({ token })}>
         {({ data }) =>
           data.albums.items.map(album => (
