@@ -24,12 +24,6 @@ export default function SongListItem({ track }) {
               icon="play"
               css={{
                 color: colors.link,
-                alignItems: 'center',
-                display: 'flex',
-                flex: '1 0 auto',
-                justifyContent: 'inherit',
-                lineHeight: 'normal',
-                position: 'relative',
               }}
             />
           </button>
