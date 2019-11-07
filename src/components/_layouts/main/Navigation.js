@@ -2,6 +2,7 @@ import React from 'react'
 import { FontAwesomeIcon as Icon } from '@fortawesome/react-fontawesome'
 import Link from '@link'
 import colors from '@features/_ui/colors'
+import { getStatic } from '@lib/static'
 
 const mainMenus = [
   {
@@ -26,10 +27,22 @@ export default function Navigation() {
     <nav
       css={{
         backgroundColor: colors.background.dark,
-        paddingTop: '60px',
+        paddingTop: '25px',
         height: '100%',
         minHeight: '100vh',
       }}>
+      <div css={{ padding: '0 0 20px 25px' }}>
+        <Link route="home">
+          <a>
+            <img
+              src={getStatic('/images/Spotify_Logo_White.png')}
+              alt="home"
+              css={{ width: '130px' }}
+            />
+          </a>
+        </Link>
+      </div>
+
       {mainMenus.map(menu => (
         <Link key={menu.name} route={menu.route}>
           <a
