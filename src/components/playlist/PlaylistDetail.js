@@ -27,7 +27,7 @@ function PlaylistDetailPage() {
               <DetailPageHeader data={data} />
             </Box>
             <Box width={2 / 3}>
-              <SongList tracks={data.tracks.items} />
+              <SongList tracks={data.tracks} />
             </Box>
           </Flex>
         )
