@@ -19,7 +19,7 @@ export default function MusicPlayer() {
         backgroundColor: colors.background.light,
         borderTop: `1px solid ${colors.background.dark}`,
       }}>
-      <Box css={{ alignSelf: 'center' }}>
+      <Box css={{ width: '300px', alignSelf: 'center' }}>
         <NowPlaying />
       </Box>
       <Box>
@@ -37,7 +37,7 @@ export default function MusicPlayer() {
           </Box>
         </Flex>
       </Box>
-      <Box css={{ alignSelf: 'center' }}>
+      <Box css={{ width: '300px', alignSelf: 'center' }}>
         <SoundBar />
       </Box>
     </Flex>
