@@ -4,7 +4,6 @@ import { Flex, Box } from '@grid'
 import colors from '@features/_ui/colors'
 
 export default function SongListItem({ track }) {
-  console.log('track', track)
   return (
     <Box width={1}>
       <Flex
