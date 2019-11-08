@@ -61,7 +61,7 @@ export function useAuth() {
   const userData = {
     isAuthenticated: token === null ? null : !!token,
     profile: {
-      name: 'Anonymous',
+      name: 'Suranart Niamcome',
     },
     token,
   }
