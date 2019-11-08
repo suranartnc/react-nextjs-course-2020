@@ -2,6 +2,7 @@ import React from 'react'
 import { FontAwesomeIcon as Icon } from '@fortawesome/react-fontawesome'
 import { Flex, Box } from '@grid'
 import colors from '@features/_ui/colors'
+import Link from '@link'
 
 SoundBar.defaultProps = {
   volumn: 0.8,
@@ -15,7 +16,9 @@ export default function SoundBar({ volumn }) {
           justifyContent="center"
           css={{ width: '180px', alignItems: 'center' }}>
           <Box>
-            <ButtonControl icon="list" />
+            <Link route="home">
+              <ButtonControl icon="list" />
+            </Link>
           </Box>
           <Box>
             <ButtonControl icon="music" />
