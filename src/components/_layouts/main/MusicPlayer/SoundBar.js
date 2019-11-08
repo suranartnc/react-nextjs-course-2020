@@ -16,7 +16,7 @@ export default function SoundBar({ volumn }) {
           justifyContent="center"
           css={{ width: '180px', alignItems: 'center' }}>
           <Box>
-            <Link route="home">
+            <Link route="queue">
               <ButtonControl icon="list" />
             </Link>
           </Box>

@@ -35,6 +35,11 @@ const routes = [
     page: 'playlist-detail',
   },
   {
+    pattern: '/queue',
+    name: 'queue',
+    page: 'queue',
+  },
+  {
     pattern: '/account',
     name: 'account',
     page: 'account',
