@@ -5,6 +5,7 @@ import { Flex, Box } from '@grid'
 import { breakpoints } from '@lib/styles'
 import Notifications from './Notifications'
 import Navigation from './Navigation'
+import MusicPlayer from './MusicPlayer'
 
 const theme = {
   breakpoints: Object.keys(breakpoints).map(key => breakpoints[key]),
@@ -13,14 +14,11 @@ const theme = {
 export default function MainLayout({ children, breadcrumb }) {
   return (
     <ThemeProvider theme={theme}>
-      <Flex flexWrap="wrap">
-        <Box width={3 / 24}>
-          <Navigation />
-        </Box>
-        <Box width={21 / 24}>
-          <main>{children}</main>
-        </Box>
-      </Flex>
+      <Navigation />
+      <main css={{ marginLeft: '230px', paddingBottom: '80px' }}>
+        {children}
+      </main>
+      <MusicPlayer />
       <Notifications />
     </ThemeProvider>
   )

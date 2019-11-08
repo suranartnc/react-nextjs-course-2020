@@ -26,9 +26,13 @@ export default function Navigation() {
   return (
     <nav
       css={{
+        position: 'fixed',
+        top: 0,
+        bottom: '100%',
+        left: 0,
         backgroundColor: colors.background.dark,
         paddingTop: '25px',
-        height: '100%',
+        width: '230px',
         minHeight: '100vh',
       }}>
       <div css={{ padding: '0 0 20px 25px' }}>
