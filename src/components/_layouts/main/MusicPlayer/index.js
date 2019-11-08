@@ -22,17 +22,18 @@ export default function MusicPlayer() {
       <Box css={{ width: '300px', alignSelf: 'center' }}>
         <NowPlaying />
       </Box>
-      <Box>
+      <Box css={{ width: '700px' }}>
         <Flex
           css={{
             flexDirection: 'column',
             justifyContent: 'center',
+            alignItems: 'center',
             height: '100%',
           }}>
           <Box>
             <ControlPanel />
           </Box>
-          <Box>
+          <Box css={{ width: '100%' }}>
             <ProgressBar />
           </Box>
         </Flex>
