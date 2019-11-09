@@ -20,11 +20,20 @@ function prepareData({ owner, images, name, tracks }) {
     image: images[0].url,
     tracks: tracks.items
       .map(item => item.track)
-      .map(({ name, album, artists, duration_ms: durationMs }) => ({
-        name,
-        artist: artists[0].name,
-        album: album.name,
-        durationMs,
-      })),
+      .map(
+        ({
+          name,
+          album,
+          artists,
+          preview_url: previewUrl,
+          duration_ms: durationMs,
+        }) => ({
+          name,
+          artist: artists[0].name,
+          album: album.name,
+          previewUrl,
+          durationMs,
+        }),
+      ),
   }
 }

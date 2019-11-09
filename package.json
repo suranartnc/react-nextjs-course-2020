@@ -46,6 +46,7 @@
     "react-cookie": "^4.0.1",
     "react-dom": "^16.11.0",
     "react-helmet": "^5.2.1",
+    "react-player": "^1.14.0",
     "react-waypoint": "^9.0.2",
     "serve-favicon": "^2.5.0",
     "webfontloader": "^1.6.28",

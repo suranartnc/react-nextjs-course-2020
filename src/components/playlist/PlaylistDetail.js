@@ -23,8 +23,6 @@ function PlaylistDetailPage() {
       <Fetch
         service={() => PlaylistService.getPlaylistById(query.id, { token })}>
         {({ data }) => {
-          console.log('data.tracks', data.tracks)
-
           return (
             <Fragment key={data.id}>
               <Box width={1 / 3}>

@@ -22,10 +22,16 @@ function prepareData({
     bottomLine: `${releaseDate.split('-')[0]} • ${totalTracks} Tracks`,
     image: images[0].url,
     tracks: tracks.items.map(
-      ({ name: trackName, artists, duration_ms: durationMs }) => ({
+      ({
+        name: trackName,
+        artists,
+        preview_url: previewUrl,
+        duration_ms: durationMs,
+      }) => ({
         name: trackName,
         artist: artists[0].name,
         album: name,
+        previewUrl,
         durationMs,
       }),
     ),
