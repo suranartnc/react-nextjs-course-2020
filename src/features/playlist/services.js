@@ -13,6 +13,7 @@ export function getMyPlaylist({ token }) {
 }
 
 function prepareData({ owner, images, name, tracks }) {
+  console.log('tracks', tracks)
   return {
     title: name,
     subTitle: owner.display_name,
@@ -31,6 +32,7 @@ function prepareData({ owner, images, name, tracks }) {
           name,
           artist: artists[0].name,
           album: album.name,
+          image: album.images[0].url,
           previewUrl,
           durationMs,
         }),

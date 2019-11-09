@@ -2,8 +2,11 @@ import React from 'react'
 import { FontAwesomeIcon as Icon } from '@fortawesome/react-fontawesome'
 import { Flex, Box } from '@grid'
 import colors from '@features/_ui/colors'
+import { inject } from '@lib/store'
 
-export default function SongListItem({ track }) {
+export default inject('playerStore')(SongListItem)
+
+function SongListItem({ track, playerStore }) {
   return (
     <Box width={1}>
       <Flex
@@ -19,7 +22,15 @@ export default function SongListItem({ track }) {
               width: '30px',
               height: '30px',
               cursor: 'pointer',
-            }}>
+            }}
+            onClick={() =>
+              playerStore.setNowPlaying({
+                url: track.previewUrl,
+                title: track.name,
+                subTitle: track.artist,
+                image: track.image,
+              })
+            }>
             <Icon
               icon="play"
               css={{

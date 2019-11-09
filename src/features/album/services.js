@@ -31,6 +31,7 @@ function prepareData({
         name: trackName,
         artist: artists[0].name,
         album: name,
+        image: images[0].url,
         previewUrl,
         durationMs,
       }),
