@@ -1,11 +1,10 @@
 import ReactPlayer from 'react-player'
 import React from 'react'
+import { inject } from '@lib/store'
 
-Player.defaultProps = {
-  url:
-    'https://p.scdn.co/mp3-preview/f0521c21357ae522872b59cf4dd082ad65880fe8?cid=e4abb1ea8fdf4926a463960abd146fcb',
-}
-
-export default function Player({ url }) {
+function Player({ playerStore }) {
+  const { url } = playerStore.nowPlaying
   return <ReactPlayer css={{ display: 'none' }} url={url} playing />
 }
+
+export default inject('playerStore')(Player)

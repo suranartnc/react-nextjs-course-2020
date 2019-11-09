@@ -1,14 +1,11 @@
 import React from 'react'
 import { Flex, Box } from '@grid'
 import colors from '@features/_ui/colors'
+import { inject } from '@lib/store'
 
-NowPlaying.defaultProps = {
-  image: 'https://i.scdn.co/image/f17a44967fc4a5d505a0151add0824bfd0f5ad47',
-  title: 'ไกลแค่ไหนคือใกล้',
-  subtitle: 'Getsunova',
-}
+function NowPlaying({ playerStore }) {
+  const { image, title, subTitle } = playerStore.nowPlaying
 
-export default function NowPlaying({ image, title, subtitle }) {
   return (
     <Flex
       css={{
@@ -28,10 +25,12 @@ export default function NowPlaying({ image, title, subtitle }) {
             <h3 css={{ color: colors.link, fontSize: '0.9em' }}>{title}</h3>
           </Box>
           <Box>
-            <small css={{ fontSize: '0.8em' }}>{subtitle}</small>
+            <small css={{ fontSize: '0.8em' }}>{subTitle}</small>
           </Box>
         </Flex>
       </Box>
     </Flex>
   )
 }
+
+export default inject('playerStore')(NowPlaying)
