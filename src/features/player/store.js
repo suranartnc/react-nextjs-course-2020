@@ -27,9 +27,16 @@ export default class PlayerStore {
     progress: 0.0,
   }
 
-  @observable
+  @observable.struct
   queue = {
     tracks: [],
+    currentIndex: 0,
+  }
+
+  @observable
+  options = {
+    repeat: true,
+    shuffle: false,
   }
 
   @action
@@ -43,7 +50,7 @@ export default class PlayerStore {
     this.nowPlaying.subTitle = artist
     this.nowPlaying.image = image
 
-    this.replaceQueueWithTracks([track])
+    // this.replaceQueueWithTracks([track])
   }
 
   @action
@@ -70,11 +77,25 @@ export default class PlayerStore {
 
   @action
   addTrackToQueue(track) {
-    this.queue.queue.push(track)
+    this.queue.tracks.push(track)
   }
 
   @action
   replaceQueueWithTracks(tracks) {
     this.queue.tracks = tracks
+  }
+
+  @action
+  playNextTrackInQueue() {
+    const isDone = this.queue.tracks.length === this.queue.currentIndex + 1
+
+    if (!isDone) {
+      this.queue.currentIndex++
+    } else if (this.options.repeat === true) {
+      this.queue.currentIndex = 0
+    }
+
+    const nextTrack = this.queue.tracks[this.queue.currentIndex]
+    this.play(nextTrack)
   }
 }

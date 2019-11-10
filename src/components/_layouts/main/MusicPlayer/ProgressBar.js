@@ -67,7 +67,7 @@ function ProgressBar({ playerStore }) {
             }}
             onMouseUp={() => {
               playerInstance.seekTo(playerStore.progress.progress, 'fraction')
-              playerStore.play()
+              playerStore.resume()
               setSeeking(false)
             }}
           />
@@ -81,6 +81,7 @@ function ProgressBar({ playerStore }) {
         playing={playerStore.nowPlaying.playing}
         progressInterval={50}
         onProgress={data => !seeking && playerStore.setProgress(data)}
+        onEnded={() => playerStore.playNextTrackInQueue()}
       />
     </Flex>
   )

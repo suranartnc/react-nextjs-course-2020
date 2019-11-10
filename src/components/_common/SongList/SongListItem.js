@@ -7,6 +7,10 @@ import { inject } from '@lib/store'
 export default inject('playerStore')(SongListItem)
 
 function SongListItem({ track, playerStore }) {
+  if (track.previewUrl === null) {
+    return null
+  }
+
   return (
     <Box width={1}>
       <Flex
@@ -24,7 +28,6 @@ function SongListItem({ track, playerStore }) {
               cursor: 'pointer',
             }}
             onClick={() => {
-              console.log('xxx')
               playerStore.play(track)
             }}>
             <Icon
@@ -55,9 +58,23 @@ function SongListItem({ track, playerStore }) {
         </Box>
         <Box
           css={{
+            padding: '5px 10px',
+            fontSize: '0.85em',
+            color: colors.link,
+          }}>
+          <a
+            href="#"
+            onClick={e => {
+              e.preventDefault()
+              playerStore.addTrackToQueue(track)
+            }}>
+            Add to queue
+          </a>
+        </Box>
+        <Box
+          css={{
             paddingTop: '5px',
             fontSize: '0.85em',
-            color: '#888',
           }}>
           {transformDuration(track.durationMs)}
         </Box>
