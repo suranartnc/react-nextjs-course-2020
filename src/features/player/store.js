@@ -50,7 +50,7 @@ export default class PlayerStore {
     this.nowPlaying.subTitle = artist
     this.nowPlaying.image = image
 
-    // this.replaceQueueWithTracks([track])
+    this.replaceQueueWithTrack(track)
   }
 
   @action
@@ -81,8 +81,14 @@ export default class PlayerStore {
   }
 
   @action
-  replaceQueueWithTracks(tracks) {
-    this.queue.tracks = tracks
+  replaceQueueWithTrack(track) {
+    const isTrackInQueue = this.queue.tracks.find(
+      trackInQueue => trackInQueue.name === track.name,
+    )
+
+    if (!isTrackInQueue) {
+      this.queue.tracks = [track]
+    }
   }
 
   @action
