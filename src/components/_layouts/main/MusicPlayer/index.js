@@ -6,7 +6,6 @@ import ControlPanel from './ControlPanel'
 import NowPlaying from './NowPlaying'
 import ProgressBar from './ProgressBar'
 import SoundBar from './SoundBar'
-import { Player } from '@features/player'
 
 export default function MusicPlayer() {
   return (
@@ -42,7 +41,6 @@ export default function MusicPlayer() {
       <Box css={{ width: '300px', alignSelf: 'center' }}>
         <SoundBar />
       </Box>
-      <Player />
     </Flex>
   )
 }

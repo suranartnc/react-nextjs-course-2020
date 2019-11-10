@@ -1,9 +1,14 @@
-import React from 'react'
+import React, { useState } from 'react'
+import ReactPlayer from 'react-player'
 import { Flex, Box } from '@grid'
 import { inject } from '@lib/store'
 
 function ProgressBar({ playerStore }) {
   const { timeElapsed, progress, duration } = playerStore.progress
+  let playerInstance = null
+
+  const [seeking, setSeeking] = useState(false)
+
   return (
     <Flex
       justifyContent="space-between"
@@ -44,20 +49,39 @@ function ProgressBar({ playerStore }) {
               height: '4px',
               outline: 'none',
               background: 'transparent',
-              '&::-webkit-slider-thumb': {
-                display: 'none',
-              },
             }}
             type="range"
-            readOnly
             min={0}
             max={1}
             step="any"
             value={progress}
+            onClick={e => {
+              playerStore.seek(parseFloat(e.target.value))
+            }}
+            onMouseDown={() => {
+              setSeeking(true)
+              playerStore.pause()
+            }}
+            onChange={e => {
+              playerStore.seek(parseFloat(e.target.value))
+            }}
+            onMouseUp={() => {
+              playerInstance.seekTo(playerStore.progress.progress, 'fraction')
+              playerStore.play()
+              setSeeking(false)
+            }}
           />
         </div>
       </Box>
       <Box css={{ fontSize: '0.7em', padding: '10px' }}>{duration}</Box>
+      <ReactPlayer
+        ref={el => (playerInstance = el)}
+        css={{ display: 'none' }}
+        url={playerStore.nowPlaying.url}
+        playing={playerStore.nowPlaying.playing}
+        progressInterval={50}
+        onProgress={data => !seeking && playerStore.setProgress(data)}
+      />
     </Flex>
   )
 }

@@ -47,6 +47,11 @@ export default class PlayerStore {
   }
 
   @action
+  seek(progress) {
+    this.progress.progress = progress
+  }
+
+  @action
   setProgress({ playedSeconds, played, loadedSeconds }) {
     this.progress.timeElapsed = convertSecondsToMinutes(playedSeconds)
     this.progress.duration = convertSecondsToMinutes(loadedSeconds)
