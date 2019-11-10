@@ -13,6 +13,7 @@ function convertSecondsToMinutes(totalSeconds) {
 export default class PlayerStore {
   @observable
   nowPlaying = {
+    playing: false,
     url: '',
     title: '',
     subTitle: '',
@@ -28,10 +29,21 @@ export default class PlayerStore {
 
   @action
   setNowPlaying({ url, title, subTitle, image }) {
+    this.nowPlaying.playing = true
     this.nowPlaying.url = url
     this.nowPlaying.title = title
     this.nowPlaying.subTitle = subTitle
     this.nowPlaying.image = image
+  }
+
+  @action
+  play() {
+    this.nowPlaying.playing = true
+  }
+
+  @action
+  pause() {
+    this.nowPlaying.playing = false
   }
 
   @action

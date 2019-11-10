@@ -8,7 +8,7 @@ function Player({ playerStore }) {
     <ReactPlayer
       css={{ display: 'none' }}
       url={url}
-      playing
+      playing={playerStore.nowPlaying.playing}
       progressInterval={50}
       onProgress={data => playerStore.setProgress(data)}
     />
