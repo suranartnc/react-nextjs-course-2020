@@ -53,7 +53,10 @@ export default class PlayerStore {
     this.nowPlaying.image = image
 
     this.replaceQueueWithTrack(track)
-    this.queue.playedTracks = [0]
+
+    if (this.options.shuffle === true && this.queue.shuffledIndexes === null) {
+      this.setShuffledIndexes()
+    }
   }
 
   @action
@@ -195,20 +198,24 @@ export default class PlayerStore {
     const nextValue = !this.options.shuffle
 
     if (nextValue === true) {
-      const indexes = [...Array(this.queue.tracks.length).keys()]
-      const rawShuffledIndexes = shuffle(indexes)
-      const shuffledIndexes = [
-        this.queue.currentIndex,
-        ...rawShuffledIndexes.filter(
-          index => index !== this.queue.currentIndex,
-        ),
-      ]
-      this.queue.shuffledIndexes = shuffledIndexes
-      console.log('shuffledIndexes', shuffledIndexes)
+      if (this.nowPlaying.playing === true) {
+        this.setShuffledIndexes()
+      }
     } else {
       this.queue.shuffledIndexes = null
     }
 
     this.options.shuffle = nextValue
+  }
+
+  setShuffledIndexes() {
+    const indexes = [...Array(this.queue.tracks.length).keys()]
+    const rawShuffledIndexes = shuffle(indexes)
+    const shuffledIndexes = [
+      this.queue.currentIndex,
+      ...rawShuffledIndexes.filter(index => index !== this.queue.currentIndex),
+    ]
+    this.queue.shuffledIndexes = shuffledIndexes
+    console.log('shuffledIndexes', shuffledIndexes)
   }
 }
