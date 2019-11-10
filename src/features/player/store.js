@@ -13,6 +13,9 @@ function convertSecondsToMinutes(totalSeconds) {
 
 export default class PlayerStore {
   @observable
+  playerInstance = null
+
+  @observable
   nowPlaying = {
     playing: false,
     url: '',
@@ -26,6 +29,7 @@ export default class PlayerStore {
     timeElapsed: '',
     duration: '',
     progress: 0.0,
+    seeking: false,
   }
 
   @observable.struct
@@ -39,6 +43,11 @@ export default class PlayerStore {
   options = {
     repeat: false,
     shuffle: false,
+  }
+
+  @action
+  setPlayerInstance(instance) {
+    this.playerInstance = instance
   }
 
   @action
@@ -72,6 +81,11 @@ export default class PlayerStore {
   @action
   seek(progress) {
     this.progress.progress = progress
+  }
+
+  @action
+  setSeeking(value) {
+    this.progress.seeking = value
   }
 
   @action
