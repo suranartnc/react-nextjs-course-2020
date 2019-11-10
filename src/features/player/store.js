@@ -23,21 +23,31 @@ export default class PlayerStore {
   @observable
   progress = {
     timeElapsed: '',
-    progress: 0.0,
     duration: '',
+    progress: 0.0,
+  }
+
+  @observable
+  queue = {
+    tracks: [],
   }
 
   @action
-  setNowPlaying({ url, title, subTitle, image }) {
+  play(track) {
+    const { previewUrl, name, artist, image } = track
+
     this.nowPlaying.playing = true
-    this.nowPlaying.url = url
-    this.nowPlaying.title = title
-    this.nowPlaying.subTitle = subTitle
+
+    this.nowPlaying.url = previewUrl
+    this.nowPlaying.title = name
+    this.nowPlaying.subTitle = artist
     this.nowPlaying.image = image
+
+    this.replaceQueueWithTracks([track])
   }
 
   @action
-  play() {
+  resume() {
     this.nowPlaying.playing = true
   }
 
@@ -56,5 +66,15 @@ export default class PlayerStore {
     this.progress.timeElapsed = convertSecondsToMinutes(playedSeconds)
     this.progress.duration = convertSecondsToMinutes(loadedSeconds)
     this.progress.progress = played
+  }
+
+  @action
+  addTrackToQueue(track) {
+    this.queue.queue.push(track)
+  }
+
+  @action
+  replaceQueueWithTracks(tracks) {
+    this.queue.tracks = tracks
   }
 }

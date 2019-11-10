@@ -46,7 +46,7 @@ function ControlPanel({ playerStore }) {
           onClick={() => {
             playerStore.nowPlaying.playing
               ? playerStore.pause()
-              : playerStore.play()
+              : playerStore.resume()
           }}
         />
       </Box>

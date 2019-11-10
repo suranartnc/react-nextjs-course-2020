@@ -23,14 +23,10 @@ function SongListItem({ track, playerStore }) {
               height: '30px',
               cursor: 'pointer',
             }}
-            onClick={() =>
-              playerStore.setNowPlaying({
-                url: track.previewUrl,
-                title: track.name,
-                subTitle: track.artist,
-                image: track.image,
-              })
-            }>
+            onClick={() => {
+              console.log('xxx')
+              playerStore.play(track)
+            }}>
             <Icon
               icon="play"
               css={{
