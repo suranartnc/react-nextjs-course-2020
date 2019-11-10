@@ -4,7 +4,15 @@ import { inject } from '@lib/store'
 
 function Player({ playerStore }) {
   const { url } = playerStore.nowPlaying
-  return <ReactPlayer css={{ display: 'none' }} url={url} playing />
+  return (
+    <ReactPlayer
+      css={{ display: 'none' }}
+      url={url}
+      playing
+      progressInterval={50}
+      onProgress={data => playerStore.setProgress(data)}
+    />
+  )
 }
 
 export default inject('playerStore')(Player)

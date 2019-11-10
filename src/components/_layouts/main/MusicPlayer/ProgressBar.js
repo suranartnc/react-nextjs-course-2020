@@ -1,13 +1,9 @@
 import React from 'react'
 import { Flex, Box } from '@grid'
+import { inject } from '@lib/store'
 
-ProgressBar.defaultProps = {
-  progress: 0.2,
-  timeElapsed: '0:00',
-  duration: '4:26',
-}
-
-export default function ProgressBar({ timeElapsed, progress, duration }) {
+function ProgressBar({ playerStore }) {
+  const { timeElapsed, progress, duration } = playerStore.progress
   return (
     <Flex
       justifyContent="space-between"
@@ -30,7 +26,6 @@ export default function ProgressBar({ timeElapsed, progress, duration }) {
               width: '100%',
               height: '4px',
               zIndex: '-1',
-              transition: 'width 0.1s ease',
               '&::-webkit-progress-bar': {
                 borderRadius: '5px',
               },
@@ -48,13 +43,13 @@ export default function ProgressBar({ timeElapsed, progress, duration }) {
               width: '100%',
               height: '4px',
               outline: 'none',
-              transition: 'opacity 0.2s',
               background: 'transparent',
               '&::-webkit-slider-thumb': {
                 display: 'none',
               },
             }}
             type="range"
+            readOnly
             min={0}
             max={1}
             step="any"
@@ -66,3 +61,5 @@ export default function ProgressBar({ timeElapsed, progress, duration }) {
     </Flex>
   )
 }
+
+export default inject('playerStore')(ProgressBar)

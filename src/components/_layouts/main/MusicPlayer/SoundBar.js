@@ -1,8 +1,37 @@
-import React from 'react'
+import React, { forwardRef } from 'react'
 import { FontAwesomeIcon as Icon } from '@fortawesome/react-fontawesome'
 import { Flex, Box } from '@grid'
 import colors from '@features/_ui/colors'
 import Link from '@link'
+
+function Button({ icon, onClick, forwardedRef }) {
+  let css = {
+    background: 'transparent',
+    padding: '0px',
+    margin: '0 10px',
+    width: '20px',
+    height: '20px',
+    cursor: 'pointer',
+    border: 'none',
+    color: colors.link,
+  }
+
+  return (
+    <button onClick={onClick} css={css} ref={forwardedRef}>
+      <Icon
+        icon={icon}
+        css={{
+          marginTop: '8px',
+          width: '13px',
+        }}
+      />
+    </button>
+  )
+}
+
+const ButtonControl = forwardRef((props, forwardedRef) => {
+  return <Button {...props} forwardedRef={forwardedRef} />
+})
 
 SoundBar.defaultProps = {
   volumn: 0.8,
@@ -57,6 +86,7 @@ export default function SoundBar({ volumn }) {
                   },
                 }}
                 type="range"
+                readOnly
                 min={0}
                 max={1}
                 step="any"
@@ -67,30 +97,5 @@ export default function SoundBar({ volumn }) {
         </Flex>
       </Box>
     </Flex>
-  )
-}
-
-function ButtonControl({ icon, onClick }) {
-  let css = {
-    background: 'transparent',
-    padding: '0px',
-    margin: '0 10px',
-    width: '20px',
-    height: '20px',
-    cursor: 'pointer',
-    border: 'none',
-    color: colors.link,
-  }
-
-  return (
-    <button onClick={onClick} css={css}>
-      <Icon
-        icon={icon}
-        css={{
-          marginTop: '8px',
-          width: '13px',
-        }}
-      />
-    </button>
   )
 }
