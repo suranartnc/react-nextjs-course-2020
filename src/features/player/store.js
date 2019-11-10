@@ -141,14 +141,44 @@ export default class PlayerStore {
     this.play(nextTrack)
   }
 
+  getPreviousShuffleIndex() {
+    const foundIndex = this.queue.shuffledIndexes.findIndex(
+      index => index === this.queue.currentIndex,
+    )
+
+    const isFirstTrack = foundIndex === 0
+
+    if (!isFirstTrack) {
+      return this.queue.shuffledIndexes[foundIndex - 1]
+    }
+
+    if (this.options.repeat === true) {
+      return this.queue.shuffledIndexes[this.queue.tracks.length - 1]
+    }
+
+    return this.queue.shuffledIndexes[foundIndex]
+  }
+
+  getPreviousIndex() {
+    const isFirstTrack = this.queue.currentIndex === 0
+
+    if (!isFirstTrack) {
+      return this.queue.currentIndex - 1
+    }
+
+    if (this.options.repeat === true) {
+      return this.queue.tracks.length - 1
+    }
+
+    return this.queue.currentIndex
+  }
+
   @action
   playPreviousTrackInQueue() {
-    const hasPrevious = this.queue.currentIndex > 0
-
-    if (hasPrevious) {
-      this.queue.currentIndex--
-    } else if (this.options.repeat === true) {
-      this.queue.currentIndex = this.queue.tracks.length - 1
+    if (this.queue.shuffledIndexes !== null) {
+      this.queue.currentIndex = this.getPreviousShuffleIndex()
+    } else {
+      this.queue.currentIndex = this.getPreviousIndex()
     }
 
     const previousTrack = this.queue.tracks[this.queue.currentIndex]
@@ -174,6 +204,7 @@ export default class PlayerStore {
         ),
       ]
       this.queue.shuffledIndexes = shuffledIndexes
+      console.log('shuffledIndexes', shuffledIndexes)
     } else {
       this.queue.shuffledIndexes = null
     }
