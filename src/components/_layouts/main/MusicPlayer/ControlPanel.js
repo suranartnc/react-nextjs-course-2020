@@ -34,7 +34,13 @@ function ControlPanel({ playerStore }) {
   return (
     <Flex>
       <Box>
-        <ButtonControl icon="random" />
+        <ButtonControl
+          icon="random"
+          active={playerStore.options.shuffle}
+          onClick={() => {
+            playerStore.toggleShuffle()
+          }}
+        />
       </Box>
       <Box>
         <ButtonControl
