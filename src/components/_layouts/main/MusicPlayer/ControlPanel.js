@@ -4,7 +4,7 @@ import { FontAwesomeIcon as Icon } from '@fortawesome/react-fontawesome'
 import colors from '@features/_ui/colors'
 import { inject } from '@lib/store'
 
-function ButtonControl({ icon, circle = false, onClick }) {
+function ButtonControl({ icon, circle = false, active = false, onClick }) {
   let css = {
     background: 'transparent',
     padding: '7px 8px 11px 10px',
@@ -22,7 +22,7 @@ function ButtonControl({ icon, circle = false, onClick }) {
       <Icon
         icon={icon}
         css={{
-          color: colors.link,
+          color: active ? 'green' : colors.link,
           width: '10px',
         }}
       />
@@ -60,7 +60,13 @@ function ControlPanel({ playerStore }) {
         />
       </Box>
       <Box>
-        <ButtonControl icon="redo-alt" />
+        <ButtonControl
+          icon="redo-alt"
+          active={playerStore.options.repeat}
+          onClick={() => {
+            playerStore.toggleRepeat()
+          }}
+        />
       </Box>
     </Flex>
   )

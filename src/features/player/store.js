@@ -35,7 +35,7 @@ export default class PlayerStore {
 
   @observable
   options = {
-    repeat: true,
+    repeat: false,
     shuffle: false,
   }
 
@@ -88,6 +88,7 @@ export default class PlayerStore {
 
     if (!isTrackInQueue) {
       this.queue.tracks = [track]
+      this.queue.currentIndex = 0
     }
   }
 
@@ -117,5 +118,10 @@ export default class PlayerStore {
 
     const previousTrack = this.queue.tracks[this.queue.currentIndex]
     this.play(previousTrack)
+  }
+
+  @action
+  toggleRepeat(value) {
+    this.options.repeat = !this.options.repeat
   }
 }
