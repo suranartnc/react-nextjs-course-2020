@@ -104,4 +104,18 @@ export default class PlayerStore {
     const nextTrack = this.queue.tracks[this.queue.currentIndex]
     this.play(nextTrack)
   }
+
+  @action
+  playPreviousTrackInQueue() {
+    const hasPrevious = this.queue.currentIndex > 0
+
+    if (hasPrevious) {
+      this.queue.currentIndex--
+    } else if (this.options.repeat === true) {
+      this.queue.currentIndex = this.queue.tracks.length - 1
+    }
+
+    const previousTrack = this.queue.tracks[this.queue.currentIndex]
+    this.play(previousTrack)
+  }
 }

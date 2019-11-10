@@ -37,7 +37,10 @@ function ControlPanel({ playerStore }) {
         <ButtonControl icon="random" />
       </Box>
       <Box>
-        <ButtonControl icon="step-backward" />
+        <ButtonControl
+          icon="step-backward"
+          onClick={() => playerStore.playPreviousTrackInQueue()}
+        />
       </Box>
       <Box>
         <ButtonControl
@@ -51,7 +54,10 @@ function ControlPanel({ playerStore }) {
         />
       </Box>
       <Box>
-        <ButtonControl icon="step-forward" />
+        <ButtonControl
+          icon="step-forward"
+          onClick={() => playerStore.playNextTrackInQueue()}
+        />
       </Box>
       <Box>
         <ButtonControl icon="redo-alt" />
