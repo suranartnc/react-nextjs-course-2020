@@ -29,7 +29,7 @@ function QueuePage({ playerStore }) {
           Queue
         </h1>
       </Box>
-      <Box>
+      <Box width={1}>
         <SongList tracks={tracks} />
       </Box>
     </Flex>
