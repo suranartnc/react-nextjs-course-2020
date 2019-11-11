@@ -236,7 +236,6 @@ export default class PlayerStore {
       ...rawShuffledIndexes.filter(index => index !== this.queue.currentIndex),
     ]
     this.queue.shuffledIndexes = shuffledIndexes
-    console.log('shuffledIndexes', shuffledIndexes)
   }
 
   @action

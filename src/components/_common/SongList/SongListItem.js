@@ -58,18 +58,28 @@ function SongListItem({ track, playerStore }) {
         </Box>
         <Box
           css={{
-            padding: '5px 10px',
+            padding: '0px 10px',
             fontSize: '0.85em',
             color: colors.link,
           }}>
-          <a
-            href="#"
-            onClick={e => {
-              e.preventDefault()
+          <button
+            css={{
+              backgroundColor: 'transparent',
+              border: 'none',
+              width: '30px',
+              height: '30px',
+              cursor: 'pointer',
+            }}
+            onClick={() => {
               playerStore.addTrackToQueue(track)
             }}>
-            Add to queue
-          </a>
+            <Icon
+              icon="plus-circle"
+              css={{
+                color: colors.link,
+              }}
+            />
+          </button>
         </Box>
         <Box
           css={{
