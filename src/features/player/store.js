@@ -45,6 +45,12 @@ export default class PlayerStore {
     shuffle: false,
   }
 
+  @observable
+  volume = {
+    level: 0.8,
+    muted: false,
+  }
+
   @action
   setPlayerInstance(instance) {
     this.playerInstance = instance
@@ -231,5 +237,15 @@ export default class PlayerStore {
     ]
     this.queue.shuffledIndexes = shuffledIndexes
     console.log('shuffledIndexes', shuffledIndexes)
+  }
+
+  @action
+  setVolume(level) {
+    this.volume.level = level
+  }
+
+  @action
+  toggleMuteVolume() {
+    this.volume.muted = !this.volume.muted
   }
 }

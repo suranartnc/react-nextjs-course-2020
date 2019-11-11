@@ -11,8 +11,9 @@ import {
   faStepForward,
   faRandom,
   faRedoAlt,
-  faMusic,
   faList,
+  faVolumeUp,
+  faVolumeMute,
 } from '@fortawesome/free-solid-svg-icons'
 
 config.autoAddCss = false
@@ -29,6 +30,7 @@ library.add(
   faStepForward,
   faRandom,
   faRedoAlt,
-  faMusic,
   faList,
+  faVolumeUp,
+  faVolumeMute,
 )

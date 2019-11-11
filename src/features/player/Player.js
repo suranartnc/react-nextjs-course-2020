@@ -10,6 +10,8 @@ function Player({ playerStore }) {
       url={playerStore.nowPlaying.url}
       playing={playerStore.nowPlaying.playing}
       progressInterval={50}
+      volume={playerStore.volume.level}
+      muted={playerStore.volume.muted}
       onProgress={data =>
         !playerStore.progress.seeking && playerStore.setProgress(data)
       }
