@@ -1,10 +1,10 @@
 import React from 'react'
-import { Flex, Box } from '@grid'
 import { FontAwesomeIcon as Icon } from '@fortawesome/react-fontawesome'
 import Link from '@link'
 import colors from '@features/_ui/colors'
 import { getStatic } from '@lib/static'
-import { useMember } from '@lib/auth'
+
+import Account from './Account'
 
 const mainMenus = [
   {
@@ -25,8 +25,6 @@ const mainMenus = [
 ]
 
 export default function Navigation() {
-  const { profile } = useMember()
-
   return (
     <nav
       css={{
@@ -79,47 +77,7 @@ export default function Navigation() {
           ))}
         </div>
 
-        <div
-          css={{
-            position: 'absolute',
-            bottom: 0,
-            width: '100%',
-            textAlign: 'center',
-          }}>
-          <Flex
-            flexWrap="wrap"
-            justifyContent="space-around"
-            alignItems="center"
-            css={{
-              width: '185px',
-              margin: '0 auto',
-              padding: '6px 0',
-              borderTop: `1px solid ${colors.background.light}`,
-              fontSize: '0.85em',
-              fontWeight: 'bold',
-              color: colors.link,
-            }}>
-            <Box>
-              <Link route="account">
-                <div
-                  css={{
-                    width: '30px',
-                    height: '30px',
-                    background: colors.background.light,
-                    borderRadius: '50%',
-                    cursor: 'pointer',
-                  }}>
-                  &nbsp;
-                </div>
-              </Link>
-            </Box>
-            <Box>
-              <Link route="account">
-                <a>{profile.name}</a>
-              </Link>
-            </Box>
-          </Flex>
-        </div>
+        <Account />
       </div>
     </nav>
   )
