@@ -52,7 +52,14 @@ export default function SoundBar({ volumn }) {
           <Box>
             <ButtonControl icon="music" />
           </Box>
-          <Box css={{ flex: 1 }} pr={20}>
+          <Box
+            css={{
+              flex: 1,
+              '&:hover input[type="range"]::-webkit-slider-thumb': {
+                visibility: 'visible',
+              },
+            }}
+            pr={20}>
             <div css={{ position: 'relative' }}>
               <progress
                 css={{
@@ -82,7 +89,7 @@ export default function SoundBar({ volumn }) {
                   transition: 'opacity 0.2s',
                   background: 'transparent',
                   '&::-webkit-slider-thumb': {
-                    display: 'none',
+                    visibility: 'hidden',
                   },
                 }}
                 type="range"

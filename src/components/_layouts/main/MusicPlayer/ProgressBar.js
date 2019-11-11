@@ -18,6 +18,9 @@ function ProgressBar({ playerStore }) {
         css={{
           flex: 1,
           height: '4px',
+          '&:hover input[type="range"]::-webkit-slider-thumb': {
+            visibility: 'visible',
+          },
         }}>
         <div css={{ position: 'relative' }}>
           <progress
@@ -45,6 +48,9 @@ function ProgressBar({ playerStore }) {
               height: '4px',
               outline: 'none',
               background: 'transparent',
+              '&::-webkit-slider-thumb': {
+                visibility: 'hidden',
+              },
             }}
             type="range"
             min={0}
