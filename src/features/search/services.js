@@ -1,9 +1,8 @@
+import debounce from 'awesome-debounce-promise'
 import * as API from './repository'
 
-import { debouncePromise } from '@lib/api'
+const getDebouncedSearchResults = debounce(API.getSearchResults, 500)
 
 export function getSearchResults(q, options) {
-  const promise = API.getSearchResults(q, options)
-
-  return debouncePromise(promise, 500)
+  return getDebouncedSearchResults(q, options)
 }
