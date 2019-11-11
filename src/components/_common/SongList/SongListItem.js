@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { FontAwesomeIcon as Icon } from '@fortawesome/react-fontawesome'
 import { Flex, Box } from '@grid'
 import colors from '@features/_ui/colors'
@@ -7,12 +7,22 @@ import { inject } from '@lib/store'
 export default inject('playerStore')(SongListItem)
 
 function SongListItem({ track, playerStore }) {
+  const [hover, setHover] = useState(false)
+
   if (track.previewUrl === null) {
     return null
   }
 
   return (
-    <Box width={1}>
+    <Box
+      width={1}
+      css={{
+        '&:hover': {
+          background: colors.background.light,
+        },
+      }}
+      onMouseOver={() => setHover(true)}
+      onMouseOut={() => setHover(false)}>
       <Flex
         flexWrap="wrap"
         css={{
@@ -31,7 +41,7 @@ function SongListItem({ track, playerStore }) {
               playerStore.play(track)
             }}>
             <Icon
-              icon="play"
+              icon={hover ? 'play' : 'music'}
               css={{
                 color: colors.link,
               }}

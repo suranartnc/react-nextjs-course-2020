@@ -25,6 +25,11 @@ const baseStyles = css`
   a {
     color: ${colors.link};
   }
+  a,
+  button,
+  input {
+    outline: none;
+  }
 `
 
 export default function GlobalStyles() {
