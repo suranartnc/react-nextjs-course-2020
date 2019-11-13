@@ -16,7 +16,7 @@ server.get('/', function(req, res) {
   const html = `
     <html>
       <head>
-        <title>RNG Stack Course 2018</title>
+        <title>React Next.js Course 2020</title>
       </head>
       <body>
         <div id="root">${content}</div>
