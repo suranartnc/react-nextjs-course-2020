@@ -1,6 +1,7 @@
 import React from 'react'
 import { css, Global } from '@emotion/core'
 
+import colors from '@features/_ui/colors'
 import normalize from './normalize'
 import reset from './reset'
 
@@ -9,17 +10,25 @@ const baseStyles = css`
   ${reset}
   html,
   body {
-    padding: 3rem 1rem;
-    margin: 0;
-    background: papayawhip;
+    background: ${colors.background.normal};
     min-height: 100%;
     font-family: 'Open Sans', sans-serif;
-    font-size: 24px;
+    font-size: 16px;
+    color: ${colors.text};
   }
   img {
+    display: block;
     width: 100%;
     max-width: 100%;
     height: auto;
+  }
+  a {
+    color: ${colors.link};
+  }
+  a,
+  button,
+  input {
+    outline: none;
   }
 `
 

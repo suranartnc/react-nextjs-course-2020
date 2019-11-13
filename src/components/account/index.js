@@ -19,17 +19,4 @@ function AccountPage() {
   )
 }
 
-AccountPage.getInitialProps = async function() {
-  return {
-    breadcrumb: [
-      {
-        label: 'Account',
-        route: {
-          name: 'account',
-        },
-      },
-    ],
-  }
-}
-
 export default withPage({ restricted: true })(AccountPage)

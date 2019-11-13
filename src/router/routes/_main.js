@@ -1,6 +1,6 @@
 const patterns = {
   slug: '[A-Za-z0-9-%_]+',
-  id: '[1-9][0-9]*',
+  id: '[A-Za-z0-9-%_]+',
 }
 
 const routes = [
@@ -10,19 +10,34 @@ const routes = [
     page: 'index',
   },
   {
-    pattern: `/article/:id(${patterns.id})`,
-    name: 'article-detail',
-    page: 'article-detail',
+    pattern: `/album/:id(${patterns.id})`,
+    name: 'album-detail',
+    page: 'album-detail',
   },
   {
-    pattern: '/about',
-    name: 'about',
-    page: 'about',
+    pattern: '/search',
+    name: 'search',
+    page: 'search',
   },
   {
     pattern: '/login',
     name: 'login',
     page: 'login',
+  },
+  {
+    pattern: '/playlists',
+    name: 'playlist-list',
+    page: 'playlist-list',
+  },
+  {
+    pattern: `/playlist/:id(${patterns.id})`,
+    name: 'playlist-detail',
+    page: 'playlist-detail',
+  },
+  {
+    pattern: '/queue',
+    name: 'queue',
+    page: 'queue',
   },
   {
     pattern: '/account',

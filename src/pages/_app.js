@@ -10,6 +10,8 @@ import { initStore } from '@lib/store'
 import * as font from '@lib/font'
 import { GlobalStyles } from '@lib/styles'
 
+import MusicPlayer from '@features/player/Player'
+
 class MyApp extends App {
   componentDidMount() {
     const WebFont = require('webfontloader')
@@ -32,6 +34,7 @@ class MyApp extends App {
         <Helmet titleTemplate={`%s - nextweb.js`} />
         <Provider RootStore={rootStore}>
           <Component {...this.props.pageProps} router={router} />
+          <MusicPlayer />
         </Provider>
       </Fragment>
     )

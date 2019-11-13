@@ -1,48 +1,57 @@
-import React, { useState } from 'react'
-import { flowRight as compose } from 'lodash'
+import React from 'react'
 
-import { Router } from '@router'
-import { inject } from '@lib/store'
+import { Flex, Box } from '@grid'
 import withPage from '@lib/page/withPage'
+import { getStatic } from '@lib/static'
 
 import { signIn } from '@features/_auth'
 
-function LoginPage({ errorStore }) {
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
+const logoStyle = {
+  display: 'block',
+  paddingBottom: '30px',
+}
 
+const loginButton = {
+  backgroundColor: '#1ed761 !important',
+  borderColor: '#1ed761 !important',
+  padding: '10px 50px',
+  borderRadius: '30px',
+  fontSize: '24px',
+  fontWeight: 'bold',
+  cursor: 'pointer',
+}
+
+function LoginPage() {
   const login = e => {
     e.preventDefault()
-
-    const { redirect } = Router.router.query
-
-    signIn({ email, password, redirect }).catch(error => {
-      errorStore.addError({
-        title: error.message,
-      })
-    })
+    signIn()
   }
 
   return (
-    <form onSubmit={login}>
-      <p>
-        <label>
-          Email:
-          <input type="text" onChange={e => setEmail(e.target.value)} />
-        </label>
-      </p>
-      <p>
-        <label>
-          Password:
-          <input type="password" onChange={e => setPassword(e.target.value)} />
-        </label>
-      </p>
-      <button>Log in</button>
-    </form>
+    <div css={{ maxWidth: '480px', margin: '0 auto', height: '100vh' }}>
+      <Flex
+        css={{
+          flexWrap: 'wrap',
+          justifyContent: 'center',
+          alignItems: 'center',
+          flexDirection: 'column',
+          height: '100%',
+        }}>
+        <Box width={1}>
+          <img
+            css={logoStyle}
+            src={getStatic('images/spotifyLogo.png')}
+            alt={'SpotifyLogo'}
+          />
+        </Box>
+        <Box width={1} css={{ textAlign: 'center' }}>
+          <button css={loginButton} onClick={login}>
+            Login
+          </button>
+        </Box>
+      </Flex>
+    </div>
   )
 }
 
-export default compose(
-  withPage(),
-  inject('errorStore', { observe: false }),
-)(LoginPage)
+export default withPage({ layout: false })(LoginPage)

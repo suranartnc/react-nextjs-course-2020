@@ -1,54 +1,71 @@
-import React, { Fragment } from 'react'
-import { Flex, Box } from '@rebass/grid/emotion'
-
-import { FetchMore } from '@lib/api'
+import React from 'react'
+import { Flex, Box } from '@grid'
+import Link from '@link'
+import { Fetch } from '@lib/api'
+import { useMember } from '@lib/auth'
 import withPage from '@lib/page/withPage'
-import * as ArticleService from '@features/article/services'
+import * as AlbumService from '@features/album/services'
+import colors from '@features/_ui/colors'
 
-import ArticleLatest, { ArticleList } from './ArticleLatest'
+HomePage.defaultProps = {
+  items: [
+    {
+      id: '2Pz8VAMiGc9UW1rrbBRDuO',
+      name: 'KILL THIS LOVE',
+      images: [
+        {
+          url:
+            'https://i.scdn.co/image/ab67616d0000b273adf560d7d93b65c10b58ccda',
+        },
+      ],
+    },
+  ],
+}
 
-function HomePage({ articleLatest }) {
+function HomePage({ items }) {
+  const { token } = useMember()
+
+  if (token === null) {
+    return null
+  }
+
   return (
-    <Flex flexWrap="wrap">
-      <Box width={[1, 2 / 3]} pr={[0, 20]}>
-        <ArticleLatest data={articleLatest} />
-
-        <FetchMore
-          service={({ start, limit }) =>
-            ArticleService.getArticles({ start, limit })
-          }
-          start={5}
-          limit={5}>
-          {({ data, fetchMore, isLoading, isDone }) => {
-            return (
-              <Fragment>
-                <ArticleList data={data} />
-
-                {!isDone && (
-                  <button onClick={fetchMore}>
-                    {isLoading ? 'Loading...' : 'Load More'}
-                  </button>
-                )}
-              </Fragment>
-            )
-          }}
-        </FetchMore>
+    <Flex flexWrap="wrap" css={{ padding: '60px 120px' }}>
+      <Box width={1}>
+        <h1
+          css={{
+            color: colors.link,
+            fontSize: '2em',
+            padding: '50px 10px 10px',
+          }}>
+          New Releases
+        </h1>
       </Box>
-
-      <Box width={[1, 1 / 3]} pl={[0, 20]}>
-        <div>Sidebar</div>
-      </Box>
+      {items.map(album => (
+        <Box width={1 / 6} px={10} py={10} key={album.id}>
+          <article>
+            <Link route="album-detail" params={{ id: album.id }}>
+              <a>
+                <img src={album.images[0].url} />
+              </a>
+            </Link>
+            <h3
+              css={{
+                fontSize: '0.8em',
+                fontWeight: 'bold',
+                lineHeight: '1.5',
+                marginTop: '10px',
+                textAlign: 'center',
+              }}>
+              <Link route="album-detail" params={{ id: album.id }}>
+                <a>{album.name}</a>
+              </Link>
+            </h3>
+          </article>
+        </Box>
+      ))}
     </Flex>
   )
 }
 
-HomePage.getInitialProps = async () => {
-  const articleLatest = await ArticleService.getLatestArticles()
-
-  return {
-    title: 'Home',
-    articleLatest,
-  }
-}
-
-export default withPage()(HomePage)
+export default withPage({ restricted: true })(HomePage)
