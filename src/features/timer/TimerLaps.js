@@ -2,13 +2,13 @@ import React from 'react'
 
 import styles from './TimerStyles'
 
-export default function TimerLaps() {
+export default function TimerLaps({ laps = [] }) {
   return (
     <div style={styles.laps}>
       <ul>
-        <li>0:11</li>
-        <li>0:45</li>
-        <li>1:35</li>
+        {laps.map(function(lap) {
+          return <li key={lap}>{lap}</li>
+        })}
       </ul>
     </div>
   )
