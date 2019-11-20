@@ -1,22 +1,22 @@
 import React from 'react'
 import styles from './ToDoStyles'
 
-export default function ToDoFooter() {
+export default function ToDoFooter({ todos, updateFilter, clearCompleted }) {
   return (
     <div style={styles.footer.container}>
-      <p style={styles.footer.itemsLeft}>3 items left</p>
-      <ToDoFooterFilters />
-      <button style={styles.footerFilters.button}>Clear completed</button>
+      <p style={styles.footer.itemsLeft}>{todos.length} items left</p>
+      <ToDoFooterFilters updateFilter={updateFilter} />
+      <button style={styles.footerFilters.button} onClick={clearCompleted}>Clear completed</button>
     </div>
   )
 }
 
-function ToDoFooterFilters() {
+function ToDoFooterFilters({updateFilter}) {
   return (
     <div style={styles.footerFilters.container}>
-      <button style={styles.footerFilters.button}>All</button>
-      <button style={styles.footerFilters.button}>Active</button>
-      <button style={styles.footerFilters.button}>Completed</button>
+      <button style={styles.footerFilters.button} onClick={() => updateFilter('all')}>All</button>
+      <button style={styles.footerFilters.button} onClick={() => updateFilter('active')}>Active</button>
+      <button style={styles.footerFilters.button} onClick={() => updateFilter('completed')}>Completed</button>
     </div>
   )
 }
