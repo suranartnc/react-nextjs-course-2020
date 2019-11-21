@@ -8,14 +8,14 @@ export default function HomePage() {
         <Link
           href="/repository/[organization]/[name]"
           as="/repository/facebook/react">
-          React
+          <a>React</a>
         </Link>
       </li>
       <li>
         <Link
           href="/repository/[organization]/[name]"
           as="/repository/zeit/next.js">
-          Next.js
+          <a>Next.js</a>
         </Link>
       </li>
     </ul>
