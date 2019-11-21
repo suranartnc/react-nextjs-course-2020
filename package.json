@@ -3,14 +3,18 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js"
+    "dev": "next",
+    "build": "next build",
+    "start": "next start"
   },
   "repository": "https://github.com/suranartnc/react-nextjs-course-2020.git",
   "author": "Suranart Niamcome <suranartnc@gmail.com>",
   "license": "MIT",
   "dependencies": {
-    "react": "^16.11.0",
-    "react-dom": "^16.11.0"
+    "axios": "^0.19.0",
+    "next": "^9.1.4",
+    "react": "^16.12.0",
+    "react-dom": "^16.12.0"
   },
   "devDependencies": {
     "babel-eslint": "^10.0.3",
