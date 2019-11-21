@@ -9,26 +9,6 @@ const routes = [
     name: 'home',
     page: 'index',
   },
-  {
-    pattern: `/article/:id(${patterns.id})`,
-    name: 'article-detail',
-    page: 'article-detail',
-  },
-  {
-    pattern: '/about',
-    name: 'about',
-    page: 'about',
-  },
-  {
-    pattern: '/login',
-    name: 'login',
-    page: 'login',
-  },
-  {
-    pattern: '/account',
-    name: 'account',
-    page: 'account',
-  },
 ]
 
 module.exports = routes
