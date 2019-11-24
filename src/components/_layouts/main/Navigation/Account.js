@@ -1,12 +1,12 @@
 import React from 'react'
 import { Flex, Box } from '@grid'
-import colors from '@features/_ui/colors'
 import Link from '@link'
+import { getStatic } from '@lib/static'
+import colors from '@features/_ui/colors'
 
 Account.defaultProps = {
-  name: 'Suranart Niamcome',
-  image:
-    'https://platform-lookaside.fbsbx.com/platform/profilepic/?asid=632953206868161&height=200&width=200&ext=1576212527&hash=AeQa68J5fTX4UbRR',
+  name: 'Anonymous',
+  image: getStatic('/images/dummy-avatar-300x300.jpg'),
 }
 
 function Account(props) {
@@ -22,7 +22,6 @@ function Account(props) {
       }}>
       <Flex
         flexWrap="wrap"
-        justifyContent="space-around"
         alignItems="center"
         css={{
           width: '185px',
@@ -33,7 +32,7 @@ function Account(props) {
           fontWeight: 'bold',
           color: colors.link,
         }}>
-        <Box>
+        <Box px={10}>
           <Link route="account">
             <a>
               <img
