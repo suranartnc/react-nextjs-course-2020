@@ -2,14 +2,11 @@ import React from 'react'
 import { Flex, Box } from '@grid'
 import colors from '@features/_ui/colors'
 
-NowPlaying.defaultProps = {
-  image: '',
-  title: '',
-  subTitle: '',
-}
+import PlayerStore from '@features/player/store'
 
-function NowPlaying(props) {
-  const { image, title, subTitle } = props
+function NowPlaying() {
+  const playerStore = new PlayerStore()
+  const { image, title, subTitle } = playerStore.nowPlaying
 
   return (
     <Flex

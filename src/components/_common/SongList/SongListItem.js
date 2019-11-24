@@ -2,6 +2,9 @@ import React, { useState } from 'react'
 import { FontAwesomeIcon as Icon } from '@fortawesome/react-fontawesome'
 import { Flex, Box } from '@grid'
 import colors from '@features/_ui/colors'
+import { convertSecondsToMinutes } from '@features/player/utilities'
+
+import PlayerStore from '@features/player/store'
 
 export default function SongListItem({ track }) {
   const [hover, setHover] = useState(false)
@@ -9,6 +12,8 @@ export default function SongListItem({ track }) {
   if (track.previewUrl === null) {
     return null
   }
+
+  const playerStore = new PlayerStore()
 
   return (
     <Box
@@ -34,7 +39,10 @@ export default function SongListItem({ track }) {
               height: '30px',
               cursor: 'pointer',
             }}
-            onClick={() => {}}>
+            onClick={() => {
+              console.log('Play', track)
+              playerStore.play(track)
+            }}>
             <Icon
               icon={hover ? 'play' : 'music'}
               css={{
@@ -89,17 +97,9 @@ export default function SongListItem({ track }) {
             paddingTop: '5px',
             fontSize: '0.85em',
           }}>
-          {transformDuration(track.durationMs)}
+          {convertSecondsToMinutes(track.durationMs / 1000)}
         </Box>
       </Flex>
     </Box>
   )
-}
-
-function transformDuration(ms) {
-  ms /= 1000
-  ms = Math.round(ms)
-  const m = Math.round(ms / 60)
-  const s = ms % 60
-  return `${m <= 9 ? '0' : ''}${m}:${s <= 9 ? '0' : ''}${s}`
 }
