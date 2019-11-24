@@ -36,7 +36,7 @@ const ButtonControl = forwardRef((props, forwardedRef) => {
 SoundBar.defaultProps = {
   volume: {
     muted: false,
-    level: 0.5,
+    level: 0.8,
   },
 }
 

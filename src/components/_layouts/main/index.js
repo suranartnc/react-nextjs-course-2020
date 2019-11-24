@@ -1,9 +1,7 @@
 import React from 'react'
 import { ThemeProvider } from 'emotion-theming'
-import { Flex, Box } from '@grid'
 
 import { breakpoints } from '@lib/styles'
-import Notifications from './Notifications'
 import Navigation from './Navigation'
 import MusicPlayer from './MusicPlayer'
 
@@ -19,7 +17,6 @@ export default function MainLayout({ children, breadcrumb }) {
         {children}
       </main>
       <MusicPlayer />
-      <Notifications />
     </ThemeProvider>
   )
 }

@@ -36,24 +36,6 @@ QueuePage.defaultProps = {
         'https://p.scdn.co/mp3-preview/b97d8d8d47ad52ea8ef613261d17b6fb51fa447f?cid=e4abb1ea8fdf4926a463960abd146fcb',
       durationMs: 192106,
     },
-    {
-      name: 'ปลิว',
-      artist: 'พลอยชมพู',
-      album: 'GMM GRAMMY BEST OF THE YEAR 2016',
-      image: 'https://i.scdn.co/image/ab67616d0000b2733376602273c8370af54d996a',
-      previewUrl:
-        'https://p.scdn.co/mp3-preview/210cd71f58f0383f66c446679fec6ef2a6ed7fff?cid=e4abb1ea8fdf4926a463960abd146fcb',
-      durationMs: 257693,
-    },
-    {
-      name: "If I Ain't Got You",
-      artist: 'Alicia Keys',
-      album: 'The Diary Of Alicia Keys',
-      image: 'https://i.scdn.co/image/ab67616d0000b27356ff19308ebeb48e2ba6094b',
-      previewUrl:
-        'https://p.scdn.co/mp3-preview/7c91c6dc291142a9a489eb9be0a261b489028933?cid=e4abb1ea8fdf4926a463960abd146fcb',
-      durationMs: 228706,
-    },
   ],
 }
 

@@ -34,26 +34,6 @@ AlbumDetailPage.defaultProps = {
         durationMs: 201081,
       },
       {
-        name: 'Kick It',
-        artist: 'BLACKPINK',
-        album: 'KILL THIS LOVE',
-        image:
-          'https://i.scdn.co/image/ab67616d0000b273adf560d7d93b65c10b58ccda',
-        previewUrl:
-          'https://p.scdn.co/mp3-preview/10481d1e6205abaa77b1d0c9f59a86eb755213dc?cid=e4abb1ea8fdf4926a463960abd146fcb',
-        durationMs: 191225,
-      },
-      {
-        name: 'Hope Not',
-        artist: 'BLACKPINK',
-        album: 'KILL THIS LOVE',
-        image:
-          'https://i.scdn.co/image/ab67616d0000b273adf560d7d93b65c10b58ccda',
-        previewUrl:
-          'https://p.scdn.co/mp3-preview/078ceb2c43440308489ed4b16752a5813f8f7a22?cid=e4abb1ea8fdf4926a463960abd146fcb',
-        durationMs: 191030,
-      },
-      {
         name: 'DDU-DU DDU-DU (Remix)',
         artist: 'BLACKPINK',
         album: 'KILL THIS LOVE',

@@ -3,8 +3,8 @@ import { Flex, Box } from '@grid'
 
 ProgressBar.defaultProps = {
   timeElapsed: '0:00',
-  progress: 0.5,
-  duration: '03:00',
+  progress: 0.2,
+  duration: '0:30',
 }
 
 function ProgressBar(props) {

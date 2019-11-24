@@ -1,5 +1,4 @@
 const patterns = {
-  slug: '[A-Za-z0-9-%_]+',
   id: '[A-Za-z0-9-%_]+',
 }
 
